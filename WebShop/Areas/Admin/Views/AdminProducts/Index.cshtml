@@ -44,7 +44,7 @@
             <table class="table table-hover e-commerce-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>STT</th>
                         <th>Tên sản phẩm</th>
                         <th>Danh mục</th>
                         <th>Giá</th>
@@ -56,12 +56,13 @@
                 <tbody id="records_table">
                     @if (Model != null)
                     {
+                        int i = 1;
                         foreach (var item in Model)
                         {
                             <tr>
 
                                 <td>
-                                    @item.ProductId
+                                    @i
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -95,6 +96,7 @@
 
                                 </td>
                             </tr>
+                            i++;
                         }
                     }
 

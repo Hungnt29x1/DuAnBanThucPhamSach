@@ -77,9 +77,6 @@
                                             <li><i class="pe-7s-star"></i></li>
                                         </ul>
                                     </div>
-                                    <div class="review-status ps-4">
-                                        <a href="javascript:void(0)">( 1 Customer Review )</a>
-                                    </div>
                                 </div>
                                 <p class="short-desc mb-6">
                                     @Model.ShortDesc
@@ -99,7 +96,7 @@
                                     <span class="title">Danh mục :</span>
                                     <ul>
                                         <li>
-                                            <a href="danhmuc/@Model.Cat.Alias">@Model.Cat.CatName.ToUpper()</a>
+                                            <a >@Model.Cat.CatName.ToUpper()</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -117,17 +114,7 @@
                     <ul class="nav product-tab-nav product-tab-style-2" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="active btn btn-custom-size" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">
-                                TÁC DỤNG
-                            </a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="btn btn-custom-size" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="true">
-                                Reviews
-                            </a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="btn btn-custom-size" id="shipping-tab" data-bs-toggle="tab" href="#shipping" role="tab" aria-controls="shipping" aria-selected="false">
-                                Thông tin giao hàng
+                                Thông tin
                             </a>
                         </li>
                     </ul>
@@ -307,25 +294,6 @@
                                                     <a href="@url">
                                                         <img class="img-full" src="~/images/products/@item.Thumb" alt="@item.Title">
                                                     </a>
-                                                    <div class="product-add-action">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="cart.html">
-                                                                    <i class="pe-7s-cart"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="compare.html">
-                                                                    <i class="pe-7s-shuffle"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="wishlist.html">
-                                                                    <i class="pe-7s-like"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
                                                 </div>
                                                 <div class="product-content texx">
                                                     <a class="product-name" href="@url">@item.ProductName</a>

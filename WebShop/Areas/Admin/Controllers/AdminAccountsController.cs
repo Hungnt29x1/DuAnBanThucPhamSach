@@ -28,7 +28,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminAccounts
-        
+
         public async Task<IActionResult> Index()
         {
             ViewData["QuyenTruyCap"] = new SelectList(_context.Roles, "RoleId", "Description");
@@ -42,7 +42,7 @@ namespace WebShop.Areas.Admin.Controllers
             var dbMarketsContext = _context.Accounts.Include(a => a.Role);
             return View(await dbMarketsContext.ToListAsync());
         }
-        
+
         // GET: Admin/AdminAccounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -78,7 +78,7 @@ namespace WebShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 _context.Add(account);
                 await _context.SaveChangesAsync();
                 _notyfService.Success("Tạo mới tài khoản thành công");
@@ -137,37 +137,27 @@ namespace WebShop.Areas.Admin.Controllers
         // POST: Admin/AdminAccounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AccountId,Phone,Email,Password,Salt,Active,FullName,RoleId,LastLogin,CreateDate")] Account account)
         {
-            if (id != account.AccountId)
+            try
             {
-                return NotFound();
+                _context.Update(account);
+                await _context.SaveChangesAsync();
             }
-
-            if (ModelState.IsValid)
+            catch (DbUpdateConcurrencyException)
             {
-                try
+                if (!AccountExists(account.AccountId))
                 {
-                    _context.Update(account);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!AccountExists(account.AccountId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["QuyenTruyCap"] = new SelectList(_context.Roles, "RoleId", "RoleName", account.RoleId);
-            return View(account);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Admin/AdminAccounts/Delete/5
@@ -206,5 +196,5 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
     }
-    
+
 }
