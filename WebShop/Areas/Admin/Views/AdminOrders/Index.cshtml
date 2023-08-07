@@ -33,7 +33,7 @@
                     @if (Model != null)
                     {
                         int i = 1;
-                        foreach (var item in Model)
+                        foreach (var item in Model.OrderByDescending(c =>c.OrderDate))
                         {
                             <tr>
                                 <td>@i</td>
