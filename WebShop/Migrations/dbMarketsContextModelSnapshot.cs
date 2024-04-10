@@ -116,6 +116,21 @@ namespace WebShop.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Accounts");
+
+                    b.HasData(
+                        new
+                        {
+                            AccountId = 1,
+                            Active = true,
+                            CreateDate = new DateTime(2024, 4, 10, 14, 18, 29, 49, DateTimeKind.Local).AddTicks(9025),
+                            Email = "admin@gmail.com",
+                            FullName = "Quản lý",
+                            LastLogin = new DateTime(2024, 4, 10, 14, 18, 29, 48, DateTimeKind.Local).AddTicks(5727),
+                            Password = "Admin123",
+                            Phone = "0978719999",
+                            RoleId = 1,
+                            Salt = "Admin123"
+                        });
                 });
 
             modelBuilder.Entity("WebShop.Models.Attribute", b =>
@@ -224,6 +239,59 @@ namespace WebShop.Migrations
                     b.HasKey("CatId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CatId = 1,
+                            Alias = "rau",
+                            CatName = "Rau",
+                            Cover = "",
+                            Description = "rau",
+                            Levels = 1,
+                            MetaDesc = "",
+                            MetaKey = "",
+                            Ordering = 1,
+                            ParentId = 1,
+                            Published = true,
+                            SchemaMarkup = "",
+                            Thumb = "rau1.png",
+                            Title = ""
+                        },
+                        new
+                        {
+                            CatId = 2,
+                            Alias = "cu",
+                            CatName = "Củ",
+                            Cover = "",
+                            Description = "củ",
+                            Levels = 1,
+                            MetaDesc = "",
+                            MetaKey = "",
+                            Ordering = 1,
+                            ParentId = 1,
+                            Published = true,
+                            SchemaMarkup = "",
+                            Thumb = "cu.png",
+                            Title = ""
+                        },
+                        new
+                        {
+                            CatId = 3,
+                            Alias = "qua",
+                            CatName = "Quả",
+                            Cover = "",
+                            Description = "quả",
+                            Levels = 1,
+                            MetaDesc = "",
+                            MetaKey = "",
+                            Ordering = 1,
+                            ParentId = 1,
+                            Published = true,
+                            SchemaMarkup = "",
+                            Thumb = "qua.png",
+                            Title = ""
+                        });
                 });
 
             modelBuilder.Entity("WebShop.Models.Customer", b =>
@@ -372,7 +440,7 @@ namespace WebShop.Migrations
                     b.Property<int>("TotalMoney")
                         .HasColumnType("int");
 
-                    b.Property<int>("TransactStatusId")
+                    b.Property<int?>("TransactStatusId")
                         .HasColumnType("int")
                         .HasColumnName("TransactStatusID");
 
@@ -562,6 +630,30 @@ namespace WebShop.Migrations
                     b.HasIndex("CatId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            Active = true,
+                            Alias = "rau-muong",
+                            BestSellers = true,
+                            CatId = 1,
+                            DateCreated = new DateTime(2024, 4, 10, 14, 18, 29, 50, DateTimeKind.Local).AddTicks(8092),
+                            DateModified = new DateTime(2024, 4, 10, 14, 18, 29, 50, DateTimeKind.Local).AddTicks(8374),
+                            Description = "",
+                            Discount = 1200,
+                            HomeFlag = true,
+                            MetaDesc = "",
+                            MetaKey = "",
+                            Price = 6000,
+                            ProductName = "Rau Muống",
+                            ShortDesc = "Rau muống là một loài thực vật nhiệt đới bán thủy sinh thuộc họ Bìm bìm, là một loại rau ăn lá",
+                            Tags = "",
+                            Thumb = "rau-muong.jpg",
+                            Title = "Rau muống tươi ngon ngọt và luộc lên uống rất mát",
+                            UnitsInStock = 50
+                        });
                 });
 
             modelBuilder.Entity("WebShop.Models.QuangCao", b =>
@@ -623,6 +715,20 @@ namespace WebShop.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            Description = "admin",
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            Description = "customer",
+                            RoleName = "Customer"
+                        });
                 });
 
             modelBuilder.Entity("WebShop.Models.Shipper", b =>
@@ -746,6 +852,38 @@ namespace WebShop.Migrations
                     b.HasKey("TransactStatusId");
 
                     b.ToTable("TransactStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            TransactStatusId = 1,
+                            Description = "Chờ xác nhận",
+                            Status = "Chờ xác nhận"
+                        },
+                        new
+                        {
+                            TransactStatusId = 2,
+                            Description = "Đã xác nhận",
+                            Status = "Đã xác nhận"
+                        },
+                        new
+                        {
+                            TransactStatusId = 3,
+                            Description = "Đã lấy hàng",
+                            Status = "Đã lấy hàng"
+                        },
+                        new
+                        {
+                            TransactStatusId = 4,
+                            Description = "Đang giao hàng",
+                            Status = "Đang giao hàng"
+                        },
+                        new
+                        {
+                            TransactStatusId = 5,
+                            Description = "Hoàn thành",
+                            Status = "Hoàn thành"
+                        });
                 });
 
             modelBuilder.Entity("WebShop.Models.Account", b =>
@@ -785,8 +923,7 @@ namespace WebShop.Migrations
                     b.HasOne("WebShop.Models.TransactStatus", "TransactStatus")
                         .WithMany("Orders")
                         .HasForeignKey("TransactStatusId")
-                        .HasConstraintName("FK_Orders_TransactStatus")
-                        .IsRequired();
+                        .HasConstraintName("FK_Orders_TransactStatus");
 
                     b.Navigation("Customer");
 

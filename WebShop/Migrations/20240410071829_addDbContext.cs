@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebShop.Migrations
 {
-    public partial class abc123 : Migration
+    public partial class addDbContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -303,7 +303,7 @@ namespace WebShop.Migrations
                     CustomerID = table.Column<int>(type: "int", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     ShipDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    TransactStatusID = table.Column<int>(type: "int", nullable: false),
+                    TransactStatusID = table.Column<int>(type: "int", nullable: true),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     Paid = table.Column<bool>(type: "bit", nullable: false),
                     PaymentDate = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -391,6 +391,47 @@ namespace WebShop.Migrations
                         principalColumn: "ProductID",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "CatID", "Alias", "CatName", "Cover", "Description", "Levels", "MetaDesc", "MetaKey", "Ordering", "ParentID", "Published", "SchemaMarkup", "Thumb", "Title" },
+                values: new object[,]
+                {
+                    { 1, "rau", "Rau", "", "rau", 1, "", "", 1, 1, true, "", "rau1.png", "" },
+                    { 2, "cu", "Củ", "", "củ", 1, "", "", 1, 1, true, "", "cu.png", "" },
+                    { 3, "qua", "Quả", "", "quả", 1, "", "", 1, 1, true, "", "qua.png", "" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "RoleID", "Description", "RoleName" },
+                values: new object[,]
+                {
+                    { 1, "admin", "Admin" },
+                    { 2, "customer", "Customer" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TransactStatus",
+                columns: new[] { "TransactStatusID", "Description", "Status" },
+                values: new object[,]
+                {
+                    { 1, "Chờ xác nhận", "Chờ xác nhận" },
+                    { 2, "Đã xác nhận", "Đã xác nhận" },
+                    { 3, "Đã lấy hàng", "Đã lấy hàng" },
+                    { 4, "Đang giao hàng", "Đang giao hàng" },
+                    { 5, "Hoàn thành", "Hoàn thành" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Accounts",
+                columns: new[] { "AccountID", "Active", "CreateDate", "Email", "FullName", "LastLogin", "Password", "Phone", "RoleID", "Salt" },
+                values: new object[] { 1, true, new DateTime(2024, 4, 10, 14, 18, 29, 49, DateTimeKind.Local).AddTicks(9025), "admin@gmail.com", "Quản lý", new DateTime(2024, 4, 10, 14, 18, 29, 48, DateTimeKind.Local).AddTicks(5727), "Admin123", "0978719999", 1, "Admin123" });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "ProductID", "Active", "Alias", "BestSellers", "CatID", "DateCreated", "DateModified", "Description", "Discount", "HomeFlag", "MetaDesc", "MetaKey", "Price", "ProductName", "ShortDesc", "Tags", "Thumb", "Title", "UnitsInStock", "Video" },
+                values: new object[] { 1, true, "rau-muong", true, 1, new DateTime(2024, 4, 10, 14, 18, 29, 50, DateTimeKind.Local).AddTicks(8092), new DateTime(2024, 4, 10, 14, 18, 29, 50, DateTimeKind.Local).AddTicks(8374), "", 1200, true, "", "", 6000, "Rau Muống", "Rau muống là một loài thực vật nhiệt đới bán thủy sinh thuộc họ Bìm bìm, là một loại rau ăn lá", "", "rau-muong.jpg", "Rau muống tươi ngon ngọt và luộc lên uống rất mát", 50, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_RoleID",
