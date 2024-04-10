@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebShop.Migrations
 {
-    public partial class dbMarkets : Migration
+    public partial class abc123 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

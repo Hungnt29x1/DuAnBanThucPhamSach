@@ -81,6 +81,11 @@ namespace WebShop.Areas.Admin.Controllers
                     category.Thumb = await Utilities.UploadFile(fThumb, @"category", imageName.ToLower());
                 }
                 if (string.IsNullOrEmpty(category.Thumb)) category.Thumb = "default.jpg";
+                if (category.CatName == null)
+                {
+                    _notyfService.Error("Vui lòng không để trống tên danh mục");
+                    return View(category);
+                }
                 category.Alias = Utilities.SEOUrl(category.CatName);
                 _context.Add(category);
                 await _context.SaveChangesAsync();

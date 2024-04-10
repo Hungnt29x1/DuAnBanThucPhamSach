@@ -51,7 +51,6 @@
     <Folder Include="wwwroot\images\pages\" />
     <Folder Include="wwwroot\images\category\" />
     <Folder Include="wwwroot\images\news\" />
-    <Folder Include="ModelViews\" />
     <Folder Include="Views\Accounts\" />
     <Folder Include="Views\ShoppingCart\" />
     <Folder Include="Controllers\Components\" />

@@ -10,8 +10,8 @@ using WebShop.Models;
 namespace WebShop.Migrations
 {
     [DbContext(typeof(dbMarketsContext))]
-    [Migration("20230116074503_dbMarkets")]
-    partial class dbMarkets
+    [Migration("20240409153048_abc123")]
+    partial class abc123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
